@@ -522,7 +522,9 @@ let canvas,
     barHeight;
 
 document.addEventListener("click", () => {
-    context = new AudioContext();
+    context.resume().then(() => {
+        console.log("Playback resumed successfully");
+    });
 });
 
 const initMP3Player = () => {
