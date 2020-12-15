@@ -291,7 +291,7 @@ playList.onclick = (e) => {
     }
 };
 
-const removeListItemActive = () => {   
+const removeListItemActive = () => {
     const listItems = document.querySelectorAll("#playList li");
 
     listItems.forEach((item) => {
@@ -300,8 +300,8 @@ const removeListItemActive = () => {
 };
 
 const deleteListItem = (songId) => {
-    const newSongs= songs.filter((song) => song.id != songId);    
-    reapairSongsIndex(newSongs);    
+    const newSongs = songs.filter((song) => song.id != songId);
+    reapairSongsIndex(newSongs);
 };
 
 const reapairSongsIndex = (repairSongs) => {
@@ -318,14 +318,14 @@ const reapairSongsIndex = (repairSongs) => {
         newSongs.push(i);
     });
 
-    songs = newSongs;    
-    createPlaylist();   
+    songs = newSongs;
+    createPlaylist();
 
     currentSong = songs.filter(
         (song) => song.id == trackName.getAttribute("track-id")
     );
     currentIndex = currentSong[0].index;
-}
+};
 
 const changePlayButtonIcon = (state) => {
     if (state == "play") {
@@ -354,7 +354,7 @@ const playMusic = (songId) => {
     trackName.setAttribute("track-id", playSong.id);
     currentIndex = playSong.index;
     player.src = playSong.src;
-    player.play();    
+    player.play();
 
     changePlayButtonIcon("play");
     updateProgress();
@@ -424,20 +424,20 @@ const secondsToString = (seconds) => {
 const overtake = (e) => {
     const scrubTime = (e.offsetX / progress.offsetWidth) * player.duration;
 
-    player.currentTime = scrubTime;    
+    player.currentTime = scrubTime;
     player.play();
 
     changePlayButtonIcon("play");
     updateProgress();
 };
 
-const nextSong = () => {    
+const nextSong = () => {
     if (songs.length == currentIndex + 1) {
         currentIndex = 0;
     } else {
         currentIndex += 1;
     }
-    
+
     trackName.innerText = songs[currentIndex].name;
     trackName.setAttribute("track-id", songs[currentIndex].id);
 
@@ -454,13 +454,13 @@ const prevSong = () => {
     } else {
         currentIndex -= 1;
     }
-    
+
     trackName.innerText = songs[currentIndex].name;
     trackName.setAttribute("track-id", songs[currentIndex].id);
 
     player.src = songs[currentIndex].src;
     player.play();
-    
+
     changePlayButtonIcon("play");
     updateProgress();
 };
@@ -521,9 +521,12 @@ let canvas,
     barWidth,
     barHeight;
 
+document.addEventListener("click", () => {
+    context = new AudioContext();
+});
+
 const initMP3Player = () => {
     context = new AudioContext();
-    context.resume();
     analyser = context.createAnalyser();
 
     canvas = document.getElementById("analyser-render");
