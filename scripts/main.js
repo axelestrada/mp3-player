@@ -523,6 +523,7 @@ let canvas,
 
 const initMP3Player = () => {
     context = new AudioContext();
+    contet.resume();
     analyser = context.createAnalyser();
 
     canvas = document.getElementById("analyser-render");
