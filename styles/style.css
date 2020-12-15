@@ -84,7 +84,7 @@ body {
   -webkit-transition: opacity 0.2s;
   transition: opacity 0.2s;
   pointer-events: none;
-  z-index: 80;
+  z-index: 1000;
 }
 
 .drop-ui.active {
@@ -92,6 +92,7 @@ body {
 }
 
 .drop-ui h5 {
+  pointer-events: none;
   color: #fff;
   font-size: 1.5em;
   text-align: center;
@@ -144,6 +145,7 @@ body {
   padding: 20px;
   -webkit-transform: rotateX(180deg);
           transform: rotateX(180deg);
+  z-index: 2;
 }
 
 .player {
@@ -221,41 +223,14 @@ body {
           align-items: center;
 }
 
-.player .center .espectro {
-  width: 204px;
+.player .center .visualizer {
+  width: 200px;
   height: 90px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
 }
 
-.player .center .espectro span {
-  width: 10px;
-  height: var(--i);
-  position: relative;
-  overflow: hidden;
-  border-radius: 3px 3px 0 0;
-  margin-right: 2px;
-}
-
-.player .center .espectro span:last-child {
-  margin-right: 0;
-}
-
-.player .center .espectro span::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+.player .center .visualizer canvas {
+  width: 200px;
   height: 90px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#f7721a), color-stop(#e0ea6c), to(#32fb1b));
-  background: linear-gradient(to bottom, #f7721a, #e0ea6c, #32fb1b);
 }
 
 .player .info {
@@ -307,7 +282,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 65%;
+  width: 80%;
 }
 
 .player .info .bottom .volume .icon {
@@ -471,6 +446,22 @@ body {
   fill: #00fa00;
 }
 
+.player .controls .loop {
+  position: relative;
+}
+
+.player .controls .loop.active-single-loop::before {
+  content: "1";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #00fa00;
+  font-weight: 600;
+  font-size: 10px;
+}
+
 .icon {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -534,10 +525,15 @@ body {
   list-style: none;
   margin-bottom: 5px;
   cursor: pointer;
-  max-width: 500px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .play-list ol li span {
@@ -551,13 +547,58 @@ body {
 
 .play-list ol li #listItemName {
   font-weight: 600;
+  width: 87%;
+  max-width: 470px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.play-list ol li button {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.play-list ol li button svg {
+  opacity: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
 .play-list ol li:last-child {
   margin-bottom: 0;
 }
 
+.play-list ol li:hover svg {
+  opacity: 1;
+}
+
+.play-list ol li:hover svg path {
+  fill: #ffffffdd;
+}
+
 .play-list ol li:hover span, .play-list ol li.active span {
   color: #f88031;
+}
+
+.open-file {
+  position: absolute;
+  bottom: 28px;
+  right: 10px;
+}
+
+.open-file input {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

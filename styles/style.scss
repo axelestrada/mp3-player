@@ -58,13 +58,14 @@ body {
     opacity: 0;
     transition: opacity 0.2s;
     pointer-events: none;
-    z-index: 80;
+    z-index: 1000;
 
     &.active {
         opacity: 1;
     }
 
     h5 {
+        pointer-events: none;
         color: #fff;
         font-size: 1.5em;
         text-align: center;
@@ -109,6 +110,7 @@ body {
         font-size: 20px;
         padding: 20px;
         transform: rotateX(180deg);
+        z-index: 2;
     }
 }
 
@@ -166,41 +168,15 @@ body {
         justify-content: space-between;
         align-items: center;
 
-        .espectro {
-            width: 204px;
+        .visualizer {
+            width: 200px;
             height: 90px;
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
 
-            span {
-                width: 10px;
-                height: var(--i);
-                position: relative;
-                overflow: hidden;
-                border-radius: 3px 3px 0 0;
-                margin-right: 2px;
-
-                &:last-child {
-                    margin-right: 0;
-                }
-
-                &::before {
-                    content: "";
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 90px;
-                    background: linear-gradient(
-                        to bottom,
-                        #f7721a,
-                        #e0ea6c,
-                        #32fb1b
-                    );
-                }
+            canvas {
+                width: 200px;
+                height: 90px;
             }
-        }
+        }        
     }
 
     .info {
@@ -233,7 +209,7 @@ body {
 
             .volume {
                 display: flex;
-                width: 65%;
+                width: 80%;
 
                 .icon {
                     margin-right: 8px;
@@ -339,7 +315,7 @@ body {
             }
         }
 
-        #currentTime{
+        #currentTime {
             width: 100%;
             margin-top: 5px;
             padding: 0 10px;
@@ -347,7 +323,7 @@ body {
             justify-content: space-between;
             align-items: center;
 
-            span{
+            span {
                 color: #32fb1b;
                 letter-spacing: 1px;
                 font-weight: 500;
@@ -378,6 +354,23 @@ body {
 
             &.active svg path {
                 fill: #00fa00;
+            }
+        }
+
+        .loop{
+            position: relative;
+
+            &.active-single-loop{
+                &::before{
+                    content: "1";
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: #00fa00;
+                    font-weight: 600;
+                    font-size: 10px;
+                }
             }
         }
     }
@@ -437,10 +430,9 @@ body {
             list-style: none;
             margin-bottom: 5px;
             cursor: pointer;
-            max-width: 500px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
 
             span {
                 pointer-events: none;
@@ -453,10 +445,40 @@ body {
 
             #listItemName {
                 font-weight: 600;
+                width: 87%;
+                max-width: 470px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            button {
+                border: none;
+                outline: none;
+                background: none;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                svg {
+                    opacity: 0;
+                    transition: 0.3s;
+                }
             }
 
             &:last-child {
                 margin-bottom: 0;
+            }
+
+            &:hover {
+                svg {
+                    opacity: 1;
+                }
+
+                svg path {
+                    fill: #ffffffdd;
+                }
             }
 
             &:hover,
@@ -468,3 +490,15 @@ body {
         }
     }
 }
+
+.open-file {
+    position: absolute;
+    bottom: 28px;
+    right: 10px;
+
+    input {
+        display: none;
+    }
+}
+
+// Visualizer
