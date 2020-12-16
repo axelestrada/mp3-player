@@ -119,8 +119,49 @@ let songs = [
 ];
 
 inputFile.addEventListener("change", (e) => {
-    playFile(e.target.files[0]);
+    const files = e.target.files;
+
+    if (files.length > 1) {
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            if (i == 0) {
+                playFile(file);
+            }else{
+                addToPlayList(file);
+            }            
+        }
+    }else{
+        playFile(files[0]);
+    }
 });
+
+const addToPlayList = (file) => {
+    let fReader = new FileReader();
+
+    fReader.onload = (e) => {
+        let name = file.name.split(".")[0];
+        const exist = songs.filter((item) => item.name == name);
+
+        if (exist.length == 0) {
+            const id = uuid.v4();
+
+            const newSongs = [
+                ...songs,
+                {
+                    id: id,
+                    index: songs.length == 0 ? songs.length : songs.length,
+                    name: name,
+                    src: e.target.result,
+                },
+            ];
+
+            songs = newSongs;
+            createPlaylist();            
+        }
+    };
+
+    fReader.readAsDataURL(file);
+}
 
 const playFile = (file) => {
     let fReader = new FileReader();
@@ -186,8 +227,20 @@ const handleDragFileSelect = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (e.dataTransfer.files[0].type.split("/")[0] == "audio")
-        playFile(e.dataTransfer.files[0]);
+    const files = e.dataTransfer.files;
+
+    if (files.length > 1) {
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            if (i == 0) {
+                playFile(file);
+            }else{
+                addToPlayList(file);
+            }            
+        }
+    }else{
+        playFile(files[0]);
+    }
 
     dropUI.classList.remove("active");
     flipCard.style.pointerEvents = "all";
