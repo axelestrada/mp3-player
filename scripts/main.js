@@ -149,6 +149,8 @@ const playFile = (file) => {
                 !document
                     .querySelector(".flip-card")
                     .classList.contains("show-list")
+
+                    || window.innerWidth < 645
             ) {
                 player.src = e.target.result;
                 player.play();
@@ -175,6 +177,10 @@ const playFile = (file) => {
 
     fReader.readAsDataURL(file);
 };
+
+const openFile = () => {
+    inputFile.click();
+}
 
 const handleDragFileSelect = (e) => {
     e.preventDefault();
@@ -529,6 +535,11 @@ document.addEventListener("click", () => {
 
 const initMP3Player = () => {
     context = new AudioContext();
+
+    context.resume().then(() => {
+        console.log("Playback resumed successfully");
+    });
+
     analyser = context.createAnalyser();
 
     canvas = document.getElementById("analyser-render");

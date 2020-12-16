@@ -146,6 +146,10 @@ body {
             }
         }
 
+        .list{
+            display: none;
+        }
+
         .title {
             position: absolute;
             top: 50%;
@@ -489,6 +493,10 @@ body {
             }
         }
     }
+
+    .open-file{
+        display: none;
+    }
 }
 
 .open-file {
@@ -501,4 +509,102 @@ body {
     }
 }
 
-// Visualizer
+@media (max-width: 645px){
+    .flip-card{
+        max-width: 320px;
+        width: 95%;
+        height: 460px;
+    }
+
+    .player{
+
+        .center{
+            flex-direction: column;   
+            justify-content: flex-end;   
+            padding: 20px;
+            height: 69%;
+            
+            .visualizer{
+                margin: 50px 0 20px 0;
+            }
+
+            .info {
+                margin-left: 0;
+                height: auto;
+                align-items: center;
+
+                .name{
+                    max-width: 100%;
+                    text-align: center;
+    
+                    h2{
+                        font-size: 18px;
+                    }
+                }
+
+                .bottom{
+                    display: none;
+                }
+            }
+        }
+
+        .progress-box{
+            padding: 20px;
+        }
+
+        .controls {
+            margin-top: 0;
+
+            .icon{
+                margin: 0 15px;
+            }
+
+            .open-file{
+                display: none;
+            }
+        }
+
+        .header {
+            margin-top: 18px;
+
+            .buttons{
+                display: none;
+            }
+
+            .icon{
+                display: inline-block;
+                position: absolute;
+                top: 0;
+                right: 20px;
+            }
+        }
+    }
+
+    .play-list{
+        padding: 30px 0 0 0;
+        height: 100%;
+
+        ol{
+            height: 90%;
+        }
+
+        .close{
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+        }    
+        
+        .open-file{
+            display: inline-block;
+            background: transparent;
+        }
+    }
+
+    .open-file{
+       bottom: 10px;
+       right: 50%;
+       transform: translateX(50%);
+       z-index: 500;       
+    }
+}

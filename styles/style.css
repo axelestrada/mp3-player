@@ -194,6 +194,10 @@ body {
   background: #e8c250;
 }
 
+.player .header .list {
+  display: none;
+}
+
 .player .header .title {
   position: absolute;
   top: 50%;
@@ -592,6 +596,10 @@ body {
   color: #f88031;
 }
 
+.play-list .open-file {
+  display: none;
+}
+
 .open-file {
   position: absolute;
   bottom: 28px;
@@ -600,5 +608,92 @@ body {
 
 .open-file input {
   display: none;
+}
+
+@media (max-width: 645px) {
+  .flip-card {
+    max-width: 320px;
+    width: 95%;
+    height: 460px;
+  }
+  .player .center {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding: 20px;
+    height: 69%;
+  }
+  .player .center .visualizer {
+    margin: 50px 0 20px 0;
+  }
+  .player .center .info {
+    margin-left: 0;
+    height: auto;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .player .center .info .name {
+    max-width: 100%;
+    text-align: center;
+  }
+  .player .center .info .name h2 {
+    font-size: 18px;
+  }
+  .player .center .info .bottom {
+    display: none;
+  }
+  .player .progress-box {
+    padding: 20px;
+  }
+  .player .controls {
+    margin-top: 0;
+  }
+  .player .controls .icon {
+    margin: 0 15px;
+  }
+  .player .controls .open-file {
+    display: none;
+  }
+  .player .header {
+    margin-top: 18px;
+  }
+  .player .header .buttons {
+    display: none;
+  }
+  .player .header .icon {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 20px;
+  }
+  .play-list {
+    padding: 30px 0 0 0;
+    height: 100%;
+  }
+  .play-list ol {
+    height: 90%;
+  }
+  .play-list .close {
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+  }
+  .play-list .open-file {
+    display: inline-block;
+    background: transparent;
+  }
+  .open-file {
+    bottom: 10px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+    z-index: 500;
+  }
 }
 /*# sourceMappingURL=style.css.map */
